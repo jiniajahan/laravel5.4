@@ -4,15 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Task;
 
 class TasksController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->model =Task::class;
-    }
 
     public function index()
     {
@@ -20,6 +14,18 @@ class TasksController extends Controller
         try {
             $tasks = \DB::table('tasks')->get();
             return view('task.index', compact('tasks'));
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    } 
+    
+    public function show($id)
+    {
+
+        try {
+            $task = DB::table('tasks')->find($id);
+            return view('task.details', compact('task'));
 
         } catch (\Exception $e) {
             throw $e;
