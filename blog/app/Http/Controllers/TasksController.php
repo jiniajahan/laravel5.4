@@ -23,6 +23,12 @@ class TasksController extends Controller
         }
     } 
     
+    public function create()
+    {
+            return view('task.create');
+    }   
+    
+    
     public function show($id)
     {
 
@@ -35,5 +41,21 @@ class TasksController extends Controller
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate(request(),[
+            'title'=>'required| min:5',
+            'body'=>'required| min:20'
+
+        ]);
+        $tasks = new Task();
+
+        $tasks->title = $request->title;
+        $tasks->body = $request->body;
+        $tasks->save();
+
+        return redirect('/tasks');
     }
 }
