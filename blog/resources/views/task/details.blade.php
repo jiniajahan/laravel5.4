@@ -10,6 +10,18 @@
                         </div>
                         <hr>
                     </div>
+                    <div class="comments">
+                        @foreach($task->comments as $comment)
+                            <ul>
+                                <li class="list-group-item">
+                                    <strong>
+                                        {{$comment->created_at->diffForHumans()}}
+                                    </strong>
+                                    {{$comment->body}}
+                                </li>
+                            </ul>
+                        @endforeach
+                    </div>
                 </div>
         </div>
     </div>

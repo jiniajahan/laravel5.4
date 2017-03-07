@@ -9,6 +9,7 @@
                             <a href="/tasks/{{$task->id}}"><h2>{{$task->title}}</h2></a>
                             <p>{{$task->body}}</p>
                         </div>
+                        <p>{{$task->created_at->diffForHumans()}}</p>
                         <hr>
                     </div>
                 </div>
