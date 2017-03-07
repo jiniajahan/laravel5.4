@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +13,9 @@ class TasksController extends Controller
     {
 
         try {
-            $tasks = \DB::table('tasks')->get();
+//            $tasks = \DB::table('tasks')->get();
+
+            $tasks = Task::all();
             return view('task.index', compact('tasks'));
 
         } catch (\Exception $e) {
@@ -24,7 +27,9 @@ class TasksController extends Controller
     {
 
         try {
-            $task = DB::table('tasks')->find($id);
+//            $task = DB::table('tasks')->find($id);
+
+            $task = Task::find($id);
             return view('task.details', compact('task'));
 
         } catch (\Exception $e) {
