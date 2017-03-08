@@ -22,6 +22,21 @@
                             </ul>
                         @endforeach
                     </div>
+                    <hr>
+                    <div class="card">
+                        <div class="card-block">
+                            <form method="POST" action="/tasks/{{$task->id}}/comments">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <input type="text" name="body" placeholder="your comment here" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Add Comment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    @include('error')
                 </div>
         </div>
     </div>
