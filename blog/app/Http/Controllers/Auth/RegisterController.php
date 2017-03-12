@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Mail\Welcome;
 
 class RegisterController extends Controller
 {
@@ -27,6 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
+
     protected $redirectTo = '/home';
 
     /**
@@ -68,4 +71,18 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    /**
+     * email a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return User
+     */
+
+    public function email($user)
+    {
+
+     Mail::to($user)->send(new Welcome());
+
+    }
+
 }

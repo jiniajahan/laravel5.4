@@ -13,10 +13,18 @@ class TasksController extends Controller
     {
 
         try {
-//            $tasks = \DB::table('tasks')->get();
 
             $tasks = Task::all();
-            return view('task.index', compact('tasks'));
+
+
+
+            $archives = Task::where( DB::raw('MONTH(created_at)'), '=', date('n') )
+                ->get()
+                ->toArray();
+
+//            dd($archives);
+
+            return view('task.index', compact('tasks', 'archives'));
 
         } catch (\Exception $e) {
             throw $e;

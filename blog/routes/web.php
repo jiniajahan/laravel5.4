@@ -21,4 +21,10 @@ Route::get('/tasks/{task}', 'TasksController@show');
 Route::post('/tasks', 'TasksController@store');
 Route::post('/tasks/{id}/comments', 'CommentsController@store');
 
+Route::get('/tasks/tags/{tag}', 'TagsController@index');
 
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
