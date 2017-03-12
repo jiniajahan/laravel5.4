@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Events\TaskCreate;
 
 class TasksController extends Controller
 {
@@ -63,6 +64,8 @@ class TasksController extends Controller
         $tasks->title = $request->title;
         $tasks->body = $request->body;
         $tasks->save();
+
+        event(new TaskCreate($tasks));
 
         return redirect('/tasks');
     }

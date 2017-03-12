@@ -15,6 +15,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
+        ],   
+        
+        'App\Events\TaskCreate' => [
+            'App\Listeners\SendNotification',
         ],
     ];
 
